@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.asosyalbebe</groupId>
-	<artifactId>moment4j</artifactId>
+	<groupId>com.remobile</groupId>
+	<artifactId>moment</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>moment4j</name>
-	<description>Parse, validate, manipulate, and display dates in Java. A very similar API to momentjs.</description>
-	<url>https://github.com/sedran/moment4j</url>
+	<name>moment</name>
+	<description>moment for java</description>
+	<url>https://github.com/remobile/moment</url>
 
 	<licenses>
 		<license>
@@ -20,22 +20,22 @@
 	</licenses>
 
 	<issueManagement>
-		<url>https://github.com/sedran/moment4j/issues</url>
+		<url>https://github.com/remobile/moment/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
 
 	<scm>
-		<url>https://github.com/sedran/moment4j</url>
-		<connection>scm:git:git://github.com/sedran/moment4j.git</connection>
-		<developerConnection>scm:git:git@github.com:sedran/moment4j.git</developerConnection>
+		<url>https://github.com/remobile/moment</url>
+		<connection>scm:git:git://github.com/remobile/moment.git</connection>
+		<developerConnection>scm:git:git@github.com:remobile/moment.git</developerConnection>
 	</scm>
 
 	<developers>
 		<developer>
-			<email>serdar.kuzucu@gmail.com</email>
-			<name>Serdar Kuzucu</name>
-			<url>https://github.com/sedran</url>
-			<id>sedran</id>
+			<email>42550564@qq.com</email>
+			<name>FangYunJiang</name>
+			<url>https://github.com/remobile</url>
+			<id>remobile</id>
 		</developer>
 	</developers>
 
