@@ -19,6 +19,9 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         put("month", Calendar.MONTH);
         put("months", Calendar.MONTH);
         put("M", Calendar.MONTH);
+        put("week", Calendar.WEEK_OF_MONTH);
+        put("weeks", Calendar.WEEK_OF_MONTH);
+        put("w", Calendar.WEEK_OF_MONTH);
         put("date", Calendar.DATE);
         put("days", Calendar.DATE);
         put("d", Calendar.DATE);
@@ -194,7 +197,6 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
                 this.date(1);
             case "week":
             case "w":
-                this.day(1);
             case "day":
             case "d":
                 this.hour(0);
@@ -210,6 +212,9 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
                 break;
             default:
                 throw new RuntimeException("Unknown calendarField: " + field);
+        }
+        if (field == "week" || field == "w") {
+            this.day(1);
         }
         return this;
     }
@@ -242,8 +247,9 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
     }
 
     // 显示
-    // moment().format("yyyy-MM-dd HH:mm:ss.SSS");
+    // moment().format("YYYY-MM-DD HH:mm:ss.SSS");
     public String format(String pattern) {
+        pattern = pattern.replace('D', 'd').replace('Y', 'y');
         try {
             SimpleDateFormat format = new SimpleDateFormat(pattern);
             return format.format(calendar.getTime());
@@ -535,6 +541,6 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
     @Override
     @SuppressWarnings("StringBufferReplaceableByString")
     public String toString() {
-        return format("YYYY-MM-DD HH:mm:ss.SSS");
+        return format("YYYY-MM-dd HH:mm:ss.SSS");
     }
 }
