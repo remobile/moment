@@ -92,11 +92,17 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         this.calendar.setTime(date);
     }
     private Moment(Calendar calendar) {
-        this.calendar = (Calendar) calendar.clone();
+        if (null == calendar) {
+            this.calendar = Calendar.getInstance();
+        } else {
+            this.calendar = (Calendar) calendar.clone();
+        }
     }
     private Moment(Date date) {
         this();
-        this.calendar.setTimeInMillis(date.getTime());
+        if (null != date) {
+            this.calendar.setTimeInMillis(date.getTime());
+        }
     }
     private Moment(long timeInMillis) {
         this();
@@ -387,16 +393,16 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         }
     }
     public boolean isBefore(Date date) {
-        return isBefore(date.getTime());
+        return isBefore(moment(date));
     }
     public boolean isBefore(Date date, String field) {
-        return isBefore(date.getTime(), field);
+        return isBefore(moment(date), field);
     }
     public boolean isBefore(Calendar calendar) {
-        return isBefore(calendar.getTimeInMillis());
+        return isBefore(moment(calendar));
     }
     public boolean isBefore(Calendar calendar, String field) {
-        return isBefore(calendar.getTimeInMillis(), field);
+        return isBefore(moment(calendar), field);
     }
     // --- isAfter
     public boolean isAfter(Moment moment) {
@@ -422,16 +428,16 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         }
     }
     public boolean isAfter(Date date) {
-        return isAfter(date.getTime());
+        return isAfter(moment(date));
     }
     public boolean isAfter(Date date, String field) {
-        return isAfter(date.getTime(), field);
+        return isAfter(moment(date), field);
     }
     public boolean isAfter(Calendar calendar) {
-        return isAfter(calendar.getTimeInMillis());
+        return isAfter(moment(calendar));
     }
     public boolean isAfter(Calendar calendar, String field) {
-        return isAfter(calendar.getTimeInMillis(), field);
+        return isAfter(moment(calendar), field);
     }
     // --- isSame
     public boolean isSame(Moment moment) {
@@ -457,16 +463,16 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         }
     }
     public boolean isSame(Date date) {
-        return isSame(date.getTime());
+        return isSame(moment(date));
     }
     public boolean isSame(Date date, String field) {
-        return isSame(date.getTime(), field);
+        return isSame(moment(date), field);
     }
     public boolean isSame(Calendar calendar) {
-        return isSame(calendar.getTimeInMillis());
+        return isSame(moment(calendar));
     }
     public boolean isSame(Calendar calendar, String field) {
-        return isSame(calendar.getTimeInMillis(), field);
+        return isSame(moment(calendar), field);
     }
     // --- isBetween
     public boolean isBetween(Moment from, Moment to) {
