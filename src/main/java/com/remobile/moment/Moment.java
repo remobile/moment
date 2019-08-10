@@ -46,6 +46,8 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
         put("days", Calendar.DATE);
         put("d", Calendar.DATE);
         put("hour", Calendar.HOUR);
+        put("hours", Calendar.HOUR);
+        put("h", Calendar.HOUR);
         put("minute", Calendar.MINUTE);
         put("minutes", Calendar.MINUTE);
         put("m", Calendar.MINUTE);
