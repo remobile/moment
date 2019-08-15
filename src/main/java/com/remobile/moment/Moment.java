@@ -65,33 +65,37 @@ public class Moment implements Cloneable, Serializable, Comparable<Moment> {
     }
     private Moment(String dateStr, String pattern) {
         this();
-        pattern = pattern.replace('D', 'd').replace('Y', 'y');
-        Date date;
-        try {
-            SimpleDateFormat format = new SimpleDateFormat(pattern);
-            date = format.parse(dateStr);
-        } catch (Exception e) {
-            throw new RuntimeException("Parse error occurred while parsing [" + dateStr + "] with SimpleDateFormat [" + pattern + "]", e);
+        if (null != dateStr && dateStr.length() == pattern.length()) {
+            pattern = pattern.replace('D', 'd').replace('Y', 'y');
+            Date date;
+            try {
+                SimpleDateFormat format = new SimpleDateFormat(pattern);
+                date = format.parse(dateStr);
+            } catch (Exception e) {
+                throw new RuntimeException("Parse error occurred while parsing [" + dateStr + "] with SimpleDateFormat [" + pattern + "]", e);
+            }
+            this.calendar.setTime(date);
         }
-        this.calendar.setTime(date);
     }
     private Moment(String dateStr) {
         this();
-        String pattern = "yyyy-MM-dd HH:mm:ss";
-        if (dateStr.length() != pattern.length()) {
-            pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+        if (null != dateStr && (dateStr.length() == 19 || dateStr.length() == 10)) {
+            String pattern = "yyyy-MM-dd HH:mm:ss";
             if (dateStr.length() != pattern.length()) {
-                pattern = "yyyy-MM-dd";
+                pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+                if (dateStr.length() != pattern.length()) {
+                    pattern = "yyyy-MM-dd";
+                }
             }
+            Date date;
+            try {
+                SimpleDateFormat format = new SimpleDateFormat(pattern);
+                date = format.parse(dateStr);
+            } catch (Exception e) {
+                throw new RuntimeException("Parse error occurred while parsing [" + dateStr + "] with SimpleDateFormat [" + pattern + "]", e);
+            }
+            this.calendar.setTime(date);
         }
-        Date date;
-        try {
-            SimpleDateFormat format = new SimpleDateFormat(pattern);
-            date = format.parse(dateStr);
-        } catch (Exception e) {
-            throw new RuntimeException("Parse error occurred while parsing [" + dateStr + "] with SimpleDateFormat [" + pattern + "]", e);
-        }
-        this.calendar.setTime(date);
     }
     private Moment(Calendar calendar) {
         if (null == calendar) {
